@@ -12,6 +12,9 @@ struct player {
 	int AVE3;/*3塁打以上率*/
 	int HOMERUN;/*本塁打率*/
 	int RISP;/*得点圏打率*/
+	int BUNT;/*犠打*/
+	int SAC_FLY;/*犠牲フライ*/
+	int STEAL;/*盗塁*/
 };
 
 int main()
@@ -36,7 +39,17 @@ int main()
 			printf("%f ", data[i]);
 		}
 		printf("\n");
+		pro[j].AVE = 1000 * data[1];
+		pro[j].AVE2 = 1000 * (data[4] + data[5] + data[6]) / data[2];
+		pro[j].AVE3 = 1000 * (data[5] + data[6]) / data[2];
+		pro[j].HOMERUN = 1000 * data[6] / data[2];
+		pro[j].OBP = 1000 * data[14];
+		pro[j].RISP = 1000 * data[17];
+		pro[j].STEAL = 1000 * data[11]/((data[3] - data[4] - data[5] - data[6]) + data[7] + data[8]);
 	}
+
+
+
 	fclose(fp);
 	return 0;
 }
