@@ -25,12 +25,17 @@ int main()
 	char *filename = "data.txt";
 	char *output = "output.txt";
 	int i, j, k,BatterNumber = 0;
-	int seed,flag[4] = {0, 0, 0, 0};
+	int seed,base = 0b0000;
+	int run[GAME_NUMBER];
 	double data[17];
 
 	struct player pro[9];
 
 	srand((unsigned)time(NULL));
+
+	for( i = 0; i < GAME_NUMBER; i++){
+		run[i] = 0;
+	}
 
 	if ((fp = fopen(filename, "r")) == NULL) {
 		printf("file open error\n");
@@ -55,13 +60,29 @@ int main()
 
 	for(i = 0; i < GAME_NUMBER ; i++){
 		for(j = 0; j < 9; j++){
-			for(k = 0; k < 3; k++){
+			for(k = 0; k < 3; ){
 				seed = rand() % 1000;
 				
-				if(seed > pro[BatterNumber].AVE){
-					if(seed > pro[BatterNumber].AVE2){
-						
+				if(seed > pro[BatterNumber].OBP){
+					if(seed > pro{BatterNumber].AVE){	
+						if(seed > pro[BatterNumber].AVE2){
+							if(seed > pro[BatterNumber].AVE3){
+								if(seed > pro[BatterNumber].HOMERUN){
+									base = (base + 1) << 4;
+								}else{
+									base = base << 3;
+								}
+							}else{
+								base = base << 2;
+							}
+						}else{
+							base = base << 1;
+						}
+					}else{
+						base++;
 					}
+				}else{
+					
 				}
 				
 				BatterNumber++;
