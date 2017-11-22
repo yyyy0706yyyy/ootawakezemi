@@ -2,7 +2,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
+#define GAME_NUMBER 1000
 
 struct player {
 	char name[20];
@@ -22,10 +24,13 @@ int main()
 	FILE *fp;
 	char *filename = "data.txt";
 	char *output = "output.txt";
-	int i, j;
+	int i, j, k,BatterNumber = 0;
+	int seed,flag[4] = {0, 0, 0, 0};
 	double data[17];
 
 	struct player pro[9];
+
+	srand((unsigned)time(NULL));
 
 	if ((fp = fopen(filename, "r")) == NULL) {
 		printf("file open error\n");
@@ -47,6 +52,25 @@ int main()
 		pro[j].RISP = 1000 * data[17];
 		pro[j].STEAL = 1000 * data[11]/((data[3] - data[4] - data[5] - data[6]) + data[7] + data[8]);
 	}
+
+	for(i = 0; i < GAME_NUMBER ; i++){
+		for(j = 0; j < 9; j++){
+			for(k = 0; k < 3; k++){
+				seed = rand() % 1000;
+				
+				if(seed > pro[BatterNumber].AVE){
+					if(seed > pro[BatterNumber].AVE2){
+						
+					}
+				}
+				
+				BatterNumber++;
+				if(BatterNumber == 9){
+					BatterNumber = 0;
+				}
+			}
+		}
+	}	
 
 
 
